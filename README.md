@@ -1,4 +1,4 @@
-# United Way Affiliate Financial Health — Snowflake Demo
+# United Way Affiliate Financial Health - Snowflake Demo
 
 A data pipeline and analytics project built in Snowflake to analyze the financial health of United Way affiliate organizations across four U.S. states (CA, NY, TX, VA), using IRS Exempt Organization and Form 990 data.
 
