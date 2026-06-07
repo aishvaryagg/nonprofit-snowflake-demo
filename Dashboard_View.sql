@@ -1,0 +1,38 @@
+-- ============================================================
+-- Financial Health Dashboard View
+-- Risk-categorizes each affiliate based on key financial ratios
+-- ============================================================
+
+CREATE OR REPLACE VIEW UWW_DEMO.CLEAN.VW_FINANCIAL_HEALTH_DASHBOARD AS
+SELECT
+    SOURCE_STATE,
+    EIN,
+    NAME,
+    CITY,
+    STATE,
+    NTEE_CD,
+    TAX_PD,
+
+    TOTREVENUE,
+    TOTFUNCEXPNS,
+    TOTASSETSEND,
+    TOTLIABEND,
+    TOTNETASSETEND,
+
+    OPERATING_MARGIN,
+    EXPENSE_RATIO_PCT,
+    LIABILITY_TO_ASSET_RATIO_PCT,
+
+    CASE
+        WHEN OPERATING_MARGIN < 0 THEN 'NEGATIVE_MARGIN'
+        WHEN EXPENSE_RATIO_PCT > 100 THEN 'HIGH_EXPENSE_RATIO'
+        WHEN LIABILITY_TO_ASSET_RATIO_PCT > 60 THEN 'HIGH_LIABILITY'
+        ELSE 'NORMAL'
+    END AS RISK_CATEGORY
+
+FROM UWW_DEMO.CLEAN.VW_AFFILIATE_FINANCIAL_ANALYTICS;
+
+
+SELECT *
+FROM UWW_DEMO.CLEAN.VW_FINANCIAL_HEALTH_DASHBOARD
+LIMIT 20;
